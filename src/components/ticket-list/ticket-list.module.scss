@@ -1,0 +1,46 @@
+@import '../../styles/palette.scss';
+
+.ticket{
+    grid-area: tl;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    border-radius: 2%;
+    box-sizing: border-box;
+    max-width: 330px;
+    height: 135px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__price {
+        color: $blue;
+        font-weight: 600;
+    }
+    
+    &__body {
+        display: flex;
+        font-size: 10px;
+        font-weight: 600;
+        flex-direction: column;
+    }
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 15px;
+    }
+    
+    &__info:first-of-type {
+        margin-bottom: 8px;
+        margin-top: 10px;
+    }
+    
+    &__from-to-header, &__time-road-header, &__transfer-number-header{
+        color: $gray;
+        margin-bottom: 2px;
+    }
+}
+

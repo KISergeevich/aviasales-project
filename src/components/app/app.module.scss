@@ -1,0 +1,36 @@
+@font-face {
+    font-family: "Inter UI";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../../assets/fonts/Inter-Regular.ttf");
+}
+
+body {
+    font-family: "Inter UI";
+    box-sizing:border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #F3F7FA;
+}
+*::after, *::before {
+    box-sizing: inherit;
+}
+
+.body {
+    display: grid;
+    grid-template-columns: 150px 330px;
+    grid-auto-rows: minmax(30px, auto);
+    grid-template-areas: 
+    "logo logo"
+    "tf sf"
+    "tf tl";
+    gap: 15px;
+    justify-content: center;
+}
+
+.logo {
+    margin-top: 15px;
+    grid-area: logo;
+    align-self: center;
+    justify-self: center;
+}

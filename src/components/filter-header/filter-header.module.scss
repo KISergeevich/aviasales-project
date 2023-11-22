@@ -1,0 +1,41 @@
+@import '../../styles/palette.scss';
+
+@font-face {
+    font-family: "Inter UI";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../../assets/fonts/Inter-Regular.ttf");
+}
+
+.filterHeader {
+    box-sizing: border-box;
+    max-width: 330px;
+    grid-area: sf;
+    display: flex;
+    height: auto;
+
+    &__form {
+        width: 330px;
+        height: 100%;
+    }
+    
+    &__button {
+        font-family: "Inter UI";
+        box-sizing: border-box;
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        font-size: 9px;
+        border-radius: 2%;
+        border: 0;
+        box-shadow: 0 0 1px rgba(0,0,0,0.3);
+    }
+
+    &__button:hover, &__button:active {
+        background-color: $blue;
+        color: white;
+        border: 0;
+        border-radius: 2%;
+    }
+}
+

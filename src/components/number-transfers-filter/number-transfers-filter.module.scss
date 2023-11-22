@@ -1,0 +1,70 @@
+@import '../../styles/palette.scss';
+
+input {
+    margin: 0;
+    
+}
+.numberOfTransfers {
+    grid-area: tf;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-size: 10px;
+    font-weight: 500;
+    padding-top: 15px;
+    text-align: left;
+    border-radius: 2%;
+    height: 170px;
+
+    &__label {
+        padding-left: 22px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 30px;
+    }
+
+    &__title {
+        font-size: 9px;
+        font-weight: 900;
+        padding-left: 15px;
+        margin-bottom:  5px;
+    }
+
+    &__input {
+        position: absolute;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        
+    }
+
+
+    &__chekbox {
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        border: 1.5px solid $blue;
+        margin-left: -7px;
+        white-space: nowrap;
+    }
+
+    &__text {
+        margin-left: 17px;
+    }
+}
+
+  [type=checkbox]:checked + span:before {
+    content: '\2713';
+    position: relative;
+    top: -3px;
+    left: 0;
+    font-size: 16px;
+    color: $blue;
+  }
+  label:hover,
+   label:focus {
+    background-color:rgb(220, 248, 248);
+  }
