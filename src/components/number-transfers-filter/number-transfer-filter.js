@@ -12,7 +12,7 @@ import {
   transferOne,
   transferThree,
   transferTwo,
-} from './filters-slice'
+} from './filters-transfer-slice'
 import classes from './number-transfers-filter.module.scss'
 
 export default function NumberTransferFilter() {

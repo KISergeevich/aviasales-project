@@ -1,7 +1,7 @@
 import React from 'react'
 
 import fly from '../../assets/img/air.png'
-import FilterHeader from '../filter-header/filter-header'
+import FilterHeader from '../filter-mod/filter-mod'
 import NumberTransferFilter from '../number-transfers-filter/number-transfer-filter'
 import TicketList from '../ticket-list/ticket-list'
 

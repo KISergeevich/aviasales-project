@@ -1,6 +1,6 @@
 import React from 'react'
 
-import classes from './filter-header.module.scss'
+import classes from './filter-mod.module.scss'
 
 export default function FilterHeader() {
   return (

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const filtersSlice = createSlice({
-  name: 'filters',
+const transferSlice = createSlice({
+  name: 'transfers',
   initialState: {
     none: false,
     one: false,
@@ -35,15 +35,15 @@ const filtersSlice = createSlice({
   },
 })
 
-export const selectTransferNone = (state) => state.filters.none
-export const selectTransferOne = (state) => state.filters.one
-export const selectTransferTwo = (state) => state.filters.two
-export const selectTransferThree = (state) => state.filters.three
+export const selectTransferNone = (state) => state.transfers.none
+export const selectTransferOne = (state) => state.transfers.one
+export const selectTransferTwo = (state) => state.transfers.two
+export const selectTransferThree = (state) => state.transfers.three
 export const selectTransferAll = (state) => {
-  const { one, two, three, none } = state.filters
+  const { one, two, three, none } = state.transfers
   return one && two && three && none
 }
 
-export const { transferNone, transferOne, transferTwo, transferThree, transferAll } = filtersSlice.actions
+export const { transferNone, transferOne, transferTwo, transferThree, transferAll } = transferSlice.actions
 
-export default filtersSlice.reducer
+export default transferSlice.reducer
