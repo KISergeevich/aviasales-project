@@ -48,4 +48,4 @@ const transferSlice = createSlice({
 export const { transferNone, transferOne, transferTwo, transferThree, transferAll } = transferSlice.actions
 export const { selectTransferNone, selectTransferOne, selectTransferTwo, selectTransferThree, selectTransferAll } =
   transferSlice.selectors
-export default transferSlice.reducer
+export default transferSlice

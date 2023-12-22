@@ -1,12 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineSlices, configureStore } from '@reduxjs/toolkit'
 
-import transferReducer from '../components/number-transfers-filter/filters-transfer-slice'
-import modeReducer from '../components/filter-mode/filter-mode-slice'
+import transferSlice from '../components/number-transfers-filter/filters-transfer-slice'
+import modeSlice from '../components/filter-mode/filter-mode-slice'
+
+const filtersReducer = combineSlices({
+  transfer: transferSlice,
+  mode: modeSlice,
+})
 
 const store = configureStore({
   reducer: {
-    transfers: transferReducer,
-    mode: modeReducer,
+    filters: filtersReducer,
   },
 })
 

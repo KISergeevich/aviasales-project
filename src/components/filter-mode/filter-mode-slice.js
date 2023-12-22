@@ -18,4 +18,4 @@ const modeSlice = createSlice({
 
 export const { switchMode } = modeSlice.actions
 export const { selectMode } = modeSlice.selectors
-export default modeSlice.reducer
+export default modeSlice
