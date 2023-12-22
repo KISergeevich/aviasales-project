@@ -11,9 +11,11 @@ const modeSlice = createSlice({
       mode: action.payload,
     }),
   },
+  selectors: {
+    selectMode: (state) => state.mode,
+  },
 })
 
-export const selectMode = (state) => state.mode.mode
-
 export const { switchMode } = modeSlice.actions
+export const { selectMode } = modeSlice.selectors
 export default modeSlice.reducer

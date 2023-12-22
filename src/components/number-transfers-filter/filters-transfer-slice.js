@@ -33,17 +33,19 @@ const transferSlice = createSlice({
       three: action.payload,
     }),
   },
+  selectors: {
+    selectTransferNone: (state) => state.none,
+    selectTransferOne: (state) => state.one,
+    selectTransferTwo: (state) => state.two,
+    selectTransferThree: (state) => state.three,
+    selectTransferAll: (state) => {
+      const { one, two, three, none } = state
+      return one && two && three && none
+    },
+  },
 })
 
-export const selectTransferNone = (state) => state.transfers.none
-export const selectTransferOne = (state) => state.transfers.one
-export const selectTransferTwo = (state) => state.transfers.two
-export const selectTransferThree = (state) => state.transfers.three
-export const selectTransferAll = (state) => {
-  const { one, two, three, none } = state.transfers
-  return one && two && three && none
-}
-
 export const { transferNone, transferOne, transferTwo, transferThree, transferAll } = transferSlice.actions
-
+export const { selectTransferNone, selectTransferOne, selectTransferTwo, selectTransferThree, selectTransferAll } =
+  transferSlice.selectors
 export default transferSlice.reducer
