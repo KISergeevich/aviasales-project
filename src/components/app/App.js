@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { fetchSearchId, selectStatus } from '../tickets/tickets-slice'
 import fly from '../../assets/img/air.png'
 import FilterHeader from '../filter-mode/filter-mode'
 import NumberTransferFilter from '../number-transfers-filter/number-transfer-filter'
@@ -8,6 +10,14 @@ import TicketList from '../tickets/tickets'
 import classes from './app.module.scss'
 
 export default function App() {
+  const dispatch = useDispatch()
+
+  const status = useSelector(selectStatus)
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchSearchId())
+    }
+  }, [status, dispatch])
   return (
     <div className={classes.body}>
       <div className={classes.logo}>

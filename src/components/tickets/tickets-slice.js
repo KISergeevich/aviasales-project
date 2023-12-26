@@ -1,8 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+import ApiAviasales from '../../services/service'
 
 const ticketsSlice = createSlice({
   name: 'tickets',
   initialState: {
+    //  | 'loading' | 'succeeded' | 'failed',
+    status: 'idle',
+    error: null,
     tickets: [
       {
         // Цена в рублях
@@ -81,9 +86,16 @@ const ticketsSlice = createSlice({
   },
   selectors: {
     selectTickets: (state) => state.tickets,
+    selectStatus: (state) => state.status,
   },
 })
 
+export const fetchSearchId = createAsyncThunk('posts/fetchPosts', async () => {
+  const api = new ApiAviasales()
+  const response = await api.getSearchId()
+  return response.searchId
+})
+
 export const { fetch } = ticketsSlice.actions
-export const { selectTickets } = ticketsSlice.selectors
+export const { selectTickets, selectStatus } = ticketsSlice.selectors
 export default ticketsSlice.reducer

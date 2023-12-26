@@ -1,5 +1,5 @@
 export default class ApiAviasales {
-  baseURL = 'https://front-test.dev.aviasales.ru/search'
+  baseURL = 'https://aviasales-test-api.kata.academy/search'
 
   async getSearchId() {
     const options = {
@@ -12,7 +12,8 @@ export default class ApiAviasales {
     const response = await fetch(this.baseURL, options)
     if (response.ok) {
       const result = await response.json()
-      console.log(result)
+      return result
     }
+    return []
   }
 }
