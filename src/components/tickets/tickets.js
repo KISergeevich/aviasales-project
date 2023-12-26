@@ -7,7 +7,7 @@ import { selectTickets } from './tickets-slice'
 
 export default function TicketList() {
   const tickets = useSelector(selectTickets).map((ticket) => {
-    return <Ticket ticket={ticket} key={ticket.cattier + ticket.price} />
+    return <Ticket ticket={ticket} key={Math.floor(Math.random() * 100000000)} />
   })
   return <div>{tickets}</div>
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { fetchSearchId, selectStatus } from '../tickets/tickets-slice'
+import { fetchTickets, selectStatus } from '../tickets/tickets-slice'
 import fly from '../../assets/img/air.png'
 import FilterHeader from '../filter-mode/filter-mode'
 import NumberTransferFilter from '../number-transfers-filter/number-transfer-filter'
@@ -15,7 +15,7 @@ export default function App() {
   const status = useSelector(selectStatus)
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchSearchId())
+      dispatch(fetchTickets())
     }
   }, [status, dispatch])
   return (
