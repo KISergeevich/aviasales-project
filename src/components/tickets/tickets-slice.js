@@ -1,23 +1,29 @@
+/* eslint-disable indent */
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import ApiAviasales from '../../services/service'
 
-export const fetchTickets = createAsyncThunk('posts/fetchPosts', async () => {
+export const fetchTickets = createAsyncThunk('posts/fetchTickets', async () => {
   const api = new ApiAviasales()
   const response = await api.getSearchId()
   const { searchId } = response
   let allTickets = []
   let continueSearching = false
-  let count = 0
   do {
     // eslint-disable-next-line no-await-in-loop
     const getTicketsResponse = await api.getTickets(searchId)
-    const { stop, tickets } = getTicketsResponse
-    allTickets = allTickets.concat(tickets)
-    continueSearching = stop
-    count += 1
-  } while (!continueSearching && count < 5)
+    const { status, stop, tickets } = getTicketsResponse
+    switch (status) {
+      case 'err':
+        break
+      case '500':
+        break
+      default:
+        allTickets = allTickets.concat(tickets)
+        continueSearching = stop
+    }
+  } while (!continueSearching)
   return allTickets
 })
 
@@ -46,8 +52,9 @@ const ticketsSlice = createSlice({
   selectors: {
     selectTickets: (state) => state.tickets,
     selectStatus: (state) => state.status,
+    selectError: (state) => state.error,
   },
 })
 
-export const { selectTickets, selectStatus } = ticketsSlice.selectors
+export const { selectTickets, selectStatus, selectError } = ticketsSlice.selectors
 export default ticketsSlice.reducer
