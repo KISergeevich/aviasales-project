@@ -1,5 +1,12 @@
 @import '../../styles/palette.scss';
 
+.spinBlock {
+    display: flex;
+    flex-direction: column;
+}
 .error {
     height: 40px;
+}
+.spin {
+    margin: 10px auto;
 }

@@ -41,7 +41,9 @@ export default function Ticket({ ticket }) {
           </div>
           <div className={classes['ticket__transfer-number']}>
             <div className={classes['ticket__transfer-number-header']}>{returnFlight.stops.lenght} пересадки</div>
-            <div className={classes['ticket__transfer-number-info']}>{returnFlight.stops.join(', ')}</div>
+            <div className={classes['ticket__transfer-number-info']}>
+              {returnFlight.stops.length !== 0 ? returnFlight.stops.join(', ') : 'Прямой рейс'}
+            </div>
           </div>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { fetchTickets, selectStatus } from '../tickets/tickets-slice'
+import fetchTickets from '../tickets/fetch-tickets.thunk'
+import { selectStatus } from '../tickets/tickets-slice'
 import fly from '../../assets/img/air.png'
 import FilterHeader from '../filter-mode/filter-mode'
 import NumberTransferFilter from '../number-transfers-filter/number-transfer-filter'

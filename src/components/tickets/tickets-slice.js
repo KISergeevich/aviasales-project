@@ -1,31 +1,7 @@
-/* eslint-disable indent */
 /* eslint-disable no-param-reassign */
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
-import ApiAviasales from '../../services/service'
-
-export const fetchTickets = createAsyncThunk('posts/fetchTickets', async () => {
-  const api = new ApiAviasales()
-  const response = await api.getSearchId()
-  const { searchId } = response
-  let allTickets = []
-  let continueSearching = false
-  do {
-    // eslint-disable-next-line no-await-in-loop
-    const getTicketsResponse = await api.getTickets(searchId)
-    const { status, stop, tickets } = getTicketsResponse
-    switch (status) {
-      case 'err':
-        break
-      case '500':
-        break
-      default:
-        allTickets = allTickets.concat(tickets)
-        continueSearching = stop
-    }
-  } while (!continueSearching)
-  return allTickets
-})
+import fetchTickets from './fetch-tickets.thunk'
 
 const ticketsSlice = createSlice({
   name: 'tickets',
@@ -33,7 +9,16 @@ const ticketsSlice = createSlice({
     //  | 'loading' | 'succeeded' | 'failed',
     status: 'idle',
     error: null,
-    tickets: [],
+    allTickets: [],
+    filteredTickets: [],
+  },
+  reducers: {
+    midleResultOfTickets(state, action) {
+      return {
+        ...state,
+        filteredTickets: action.payload,
+      }
+    },
   },
   extraReducers(builder) {
     builder
@@ -42,7 +27,7 @@ const ticketsSlice = createSlice({
       })
       .addCase(fetchTickets.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.tickets = action.payload
+        state.allTickets = action.payload
       })
       .addCase(fetchTickets.rejected, (state, action) => {
         state.status = 'failed'
@@ -50,11 +35,16 @@ const ticketsSlice = createSlice({
       })
   },
   selectors: {
-    selectTickets: (state) => state.tickets,
+    selectTickets: (state) => state.filteredTickets,
+    selectFiveTickets: (state) => {
+      const fiveTickets = state.filteredTickets.slice(0, 4)
+      return fiveTickets
+    },
     selectStatus: (state) => state.status,
     selectError: (state) => state.error,
   },
 })
 
-export const { selectTickets, selectStatus, selectError } = ticketsSlice.selectors
+export const { midleResultOfTickets } = ticketsSlice.actions
+export const { selectTickets, selectStatus, selectError, selectFiveTickets } = ticketsSlice.selectors
 export default ticketsSlice.reducer
