@@ -10,13 +10,12 @@ const ticketsSlice = createSlice({
     status: 'idle',
     error: null,
     allTickets: [],
-    filteredTickets: [],
   },
   reducers: {
     midleResultOfTickets(state, action) {
       return {
         ...state,
-        filteredTickets: action.payload,
+        allTickets: action.payload,
       }
     },
   },
@@ -35,16 +34,12 @@ const ticketsSlice = createSlice({
       })
   },
   selectors: {
-    selectTickets: (state) => state.filteredTickets,
-    selectFiveTickets: (state) => {
-      const fiveTickets = state.filteredTickets.slice(0, 4)
-      return fiveTickets
-    },
+    selectTickets: (state) => state.allTickets,
     selectStatus: (state) => state.status,
     selectError: (state) => state.error,
   },
 })
 
 export const { midleResultOfTickets } = ticketsSlice.actions
-export const { selectTickets, selectStatus, selectError, selectFiveTickets } = ticketsSlice.selectors
+export const { selectTickets, selectStatus, selectError } = ticketsSlice.selectors
 export default ticketsSlice.reducer

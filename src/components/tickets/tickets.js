@@ -6,13 +6,14 @@ import { Alert, Spin } from 'antd'
 import Ticket from '../ticket/ticket'
 
 import classes from './tickets.module.scss'
-import { selectTickets, selectError, selectStatus, selectFiveTickets } from './tickets-slice'
+import { selectTickets, selectError, selectStatus } from './tickets-slice'
+import selectFilteredTickets from './filtered-tickets.selector'
 
 export default function TicketList() {
   const status = useSelector(selectStatus)
   const tickets = useSelector(selectTickets)
   const err = useSelector(selectError)
-  const fiveTickets = useSelector(selectFiveTickets)
+  const fiveTickets = useSelector(selectFilteredTickets)
   const ticketsComponents = fiveTickets.map((ticket) => {
     return <Ticket ticket={ticket} key={nextId()} />
   })

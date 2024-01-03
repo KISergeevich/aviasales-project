@@ -3,16 +3,16 @@ import { createSlice } from '@reduxjs/toolkit'
 const modeSlice = createSlice({
   name: 'mode',
   initialState: {
-    mode: 'cheap',
+    value: 'cheap',
   },
   reducers: {
     switchMode: (state, action) => ({
       ...state,
-      mode: action.payload,
+      value: action.payload,
     }),
   },
   selectors: {
-    selectMode: (state) => state.mode,
+    selectMode: (state) => state.value,
   },
 })
 
