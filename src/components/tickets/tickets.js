@@ -4,10 +4,10 @@ import nextId from 'react-id-generator'
 import { Alert, Spin } from 'antd'
 
 import Ticket from '../ticket/ticket'
+import { selectTickets, selectError, selectStatus, handleMoreTickets } from '../../redux/tickets-slice'
+import selectFilteredTickets from '../../redux/filtered-tickets-selector'
 
 import classes from './tickets.module.scss'
-import { selectTickets, selectError, selectStatus, handleMoreTickets } from './tickets-slice'
-import selectFilteredTickets from './filtered-tickets.selector'
 
 export default function TicketList() {
   const status = useSelector(selectStatus)

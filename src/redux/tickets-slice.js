@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 
-import fetchTickets from './fetch-tickets.thunk'
+import fetchTickets from './fetch-tickets-thunk'
 
 const ticketsSlice = createSlice({
   name: 'tickets',

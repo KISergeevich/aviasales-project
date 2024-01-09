@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import ApiAviasales from '../../services/service'
+import ApiAviasales from '../services/service'
 
 const fetchTickets = createAsyncThunk('posts/fetchTickets', async (_, { dispatch }) => {
   const api = new ApiAviasales()

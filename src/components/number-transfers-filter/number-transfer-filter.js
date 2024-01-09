@@ -12,7 +12,8 @@ import {
   transferOne,
   transferThree,
   transferTwo,
-} from './filters-transfer-slice'
+} from '../../redux/filters-transfer-slice'
+
 import classes from './number-transfers-filter.module.scss'
 
 export default function NumberTransferFilter() {

@@ -2,7 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames/bind'
 
-import { selectMode, switchMode } from './filter-mode-slice'
+import { selectMode, switchMode } from '../../redux/filter-mode-slice'
+
 import classes from './filter-mode.module.scss'
 
 export default function FilterHeader() {
