@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Alert, Spin } from 'antd'
 
 import Ticket from '../ticket/ticket'
-import { selectTickets, selectError, selectStatus, handleMoreTickets } from '../../redux/tickets-slice'
+import { selectError, selectStatus, handleMoreTickets } from '../../redux/tickets-slice'
 import selectFilteredTickets from '../../redux/filtered-tickets-selector'
 
 import classes from './tickets.module.scss'
 
 export default function TicketList() {
   const status = useSelector(selectStatus)
-  const tickets = useSelector(selectTickets)
+
   const err = useSelector(selectError)
-  const fiveTickets = useSelector(selectFilteredTickets)
+  const filteredTickets = useSelector(selectFilteredTickets)
+
   const dispatch = useDispatch()
-  const ticketsComponents = fiveTickets.map((ticket) => {
-    return <Ticket ticket={ticket} key={`${ticket.carrier}+${ticket.segments[0].date}+${ticket.segments[1].date}`} />
-  })
+  const ticketsComponents = useMemo(() => {
+    return filteredTickets.map((ticket) => {
+      return <Ticket ticket={ticket} key={`${ticket.carrier}+${ticket.segments[0].date}+${ticket.segments[1].date}`} />
+    })
+  }, [filteredTickets])
   if (status === 'loading') {
     return (
       <div className={classes.spinBlock}>
@@ -31,7 +34,7 @@ export default function TicketList() {
     )
   }
   if (status === 'succeeded') {
-    if (tickets.length !== 0) {
+    if (filteredTickets.length !== 0) {
       return (
         <div>
           <div>{ticketsComponents}</div>
