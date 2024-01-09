@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import ApiAviasales from '../services/service'
@@ -10,7 +9,6 @@ const fetchTickets = createAsyncThunk('posts/fetchTickets', async (_, { dispatch
   let allTickets = []
   let continueSearching = false
   do {
-    // eslint-disable-next-line no-await-in-loop
     const getTicketsResponse = await api.getTickets(searchId)
     const { status, stop, tickets } = getTicketsResponse
     switch (status) {
