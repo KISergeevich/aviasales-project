@@ -1,5 +1,12 @@
 @import '../../styles/palette.scss';
 
+@font-face {
+    font-family: "Inter UI";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../../assets/fonts/Inter-Regular.ttf");
+}
+
 .spinBlock {
     display: flex;
     flex-direction: column;
@@ -9,4 +16,20 @@
 }
 .spin {
     margin: 10px auto;
+}
+.formMore {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.buttonMore {
+    font-family: "Inter UI";
+        box-sizing: border-box;
+        height: 20px;
+        width: 330px;
+        font-size: 9px;
+        border: 0;
+        box-shadow: 0 0 1px rgba(0,0,0,0.3);
+        background-color: $blue;
+        color: white;
+        border-radius: 2%;
 }

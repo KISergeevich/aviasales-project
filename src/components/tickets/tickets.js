@@ -1,12 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import nextId from 'react-id-generator'
 import { Alert, Spin } from 'antd'
 
 import Ticket from '../ticket/ticket'
 
 import classes from './tickets.module.scss'
-import { selectTickets, selectError, selectStatus } from './tickets-slice'
+import { selectTickets, selectError, selectStatus, handleMoreTickets } from './tickets-slice'
 import selectFilteredTickets from './filtered-tickets.selector'
 
 export default function TicketList() {
@@ -14,6 +14,7 @@ export default function TicketList() {
   const tickets = useSelector(selectTickets)
   const err = useSelector(selectError)
   const fiveTickets = useSelector(selectFilteredTickets)
+  const dispatch = useDispatch()
   const ticketsComponents = fiveTickets.map((ticket) => {
     return <Ticket ticket={ticket} key={nextId()} />
   })
@@ -22,12 +23,26 @@ export default function TicketList() {
       <div className={classes.spinBlock}>
         <Spin className={classes.spin} />
         <div>{ticketsComponents}</div>
+        <form className={classes.formMore}>
+          <button className={classes.buttonMore} type="button" onClick={() => dispatch(handleMoreTickets())}>
+            Показать еще 5 билетов
+          </button>
+        </form>
       </div>
     )
   }
   if (status === 'succeeded') {
     if (tickets.length !== 0) {
-      return <div>{ticketsComponents}</div>
+      return (
+        <div>
+          <div>{ticketsComponents}</div>
+          <form className={classes.formMore}>
+            <button className={classes.buttonMore} type="button" onClick={() => dispatch(handleMoreTickets())}>
+              Показать еще 5 билетов
+            </button>
+          </form>
+        </div>
+      )
     }
     return <Alert className={classes.error} message="No tickets" type="info" showIcon />
   }

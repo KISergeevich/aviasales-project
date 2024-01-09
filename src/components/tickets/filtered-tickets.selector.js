@@ -42,10 +42,13 @@ const predicateStops = (none, one, two, three) => {
 
 const selectFilteredTickets = (state) => {
   const { tickets, mode, transfers } = state
-  const { allTickets } = tickets
+  const { allTickets, countTickets } = tickets
   const { value } = mode
   const { none, one, two, three } = transfers
 
-  return [...allTickets].filter(predicateStops(none, one, two, three)).sort(modeComporator(value)).slice(0, 5)
+  return [...allTickets]
+    .filter(predicateStops(none, one, two, three))
+    .sort(modeComporator(value))
+    .slice(0, countTickets)
 }
 export default selectFilteredTickets
