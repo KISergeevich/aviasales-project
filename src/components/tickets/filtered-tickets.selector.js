@@ -28,7 +28,7 @@ const modeComporator = (mode) => {
 const predicateStopCount = (ticket, count) => {
   const outbontStops = ticket.segments[0].stops.length
   const returnStops = ticket.segments[1].stops.length
-  return outbontStops <= count && returnStops <= count
+  return outbontStops === count || returnStops === count
 }
 const predicateStops = (none, one, two, three) => {
   return (ticket) =>
