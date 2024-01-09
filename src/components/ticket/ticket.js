@@ -1,19 +1,17 @@
 import { addMinutes, formatDuration, intervalToDuration, format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 
-import s7 from '../../assets/img/s7.png'
-
 import classes from './ticket.module.scss'
 
 export default function Ticket({ ticket }) {
-  const { price, segments } = ticket
+  const { price, segments, carrier } = ticket
   const [outbondFlight, returnFlight] = segments
   const outbondStart = new Date(outbondFlight.date)
   const outbondEnd = addMinutes(outbondStart, outbondFlight.duration)
 
   const returnStart = new Date(returnFlight.date)
   const returnEnd = addMinutes(returnStart, returnFlight.duration)
-
+  const logo = `https://pics.avs.io/99/36/${carrier}.png`
   const outbondDuration = intervalToDuration({
     start: outbondStart,
     end: outbondEnd,
@@ -29,7 +27,7 @@ export default function Ticket({ ticket }) {
     <div className={classes.ticket}>
       <div className={classes.ticket__header}>
         <div className={classes.ticket__price}>{price}</div>
-        <img src={s7} alt="s7" className={classes.ticket__logo} />
+        <img src={logo} alt="s7" className={classes.ticket__logo} />
       </div>
       <div className={classes.ticket__body}>
         <div className={classes.ticket__info}>
