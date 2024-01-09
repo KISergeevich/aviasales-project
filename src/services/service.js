@@ -14,7 +14,7 @@ export default class ApiAviasales {
       const result = await response.json()
       return result
     }
-    return ''
+    throw new Error('Something wrong')
   }
 
   async getTickets(searchId) {

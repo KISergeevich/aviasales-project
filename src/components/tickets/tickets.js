@@ -1,6 +1,5 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import nextId from 'react-id-generator'
 import { Alert, Spin } from 'antd'
 
 import Ticket from '../ticket/ticket'
@@ -16,7 +15,7 @@ export default function TicketList() {
   const fiveTickets = useSelector(selectFilteredTickets)
   const dispatch = useDispatch()
   const ticketsComponents = fiveTickets.map((ticket) => {
-    return <Ticket ticket={ticket} key={nextId()} />
+    return <Ticket ticket={ticket} key={`${ticket.carrier}+${ticket.segments[0].date}+${ticket.segments[1].date}`} />
   })
   if (status === 'loading') {
     return (
