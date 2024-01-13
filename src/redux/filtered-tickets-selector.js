@@ -51,4 +51,12 @@ const selectFilteredTickets = (state) => {
     .sort(modeComporator(value))
     .slice(0, countTickets)
 }
+
+export const filterTickets = (allTickets, none, one, two, three, value, countTickets) => {
+  return [...allTickets]
+    .filter(predicateStops(none, one, two, three))
+    .sort(modeComporator(value))
+    .slice(0, countTickets)
+}
+
 export default selectFilteredTickets

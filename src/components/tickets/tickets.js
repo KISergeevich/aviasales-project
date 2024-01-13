@@ -3,23 +3,45 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Alert, Spin } from 'antd'
 
 import Ticket from '../ticket/ticket'
-import { selectError, selectStatus, handleMoreTickets } from '../../redux/tickets-slice'
-import selectFilteredTickets from '../../redux/filtered-tickets-selector'
+import { selectError, selectStatus, handleMoreTickets, selectCount, selectTickets } from '../../redux/tickets-slice'
+import { filterTickets } from '../../redux/filtered-tickets-selector'
+import { selectMode } from '../../redux/filter-mode-slice'
+import {
+  selectTransferNone,
+  selectTransferOne,
+  selectTransferThree,
+  selectTransferTwo,
+} from '../../redux/filters-transfer-slice'
 
 import classes from './tickets.module.scss'
 
 export default function TicketList() {
+  const tickets = useSelector(selectTickets)
   const status = useSelector(selectStatus)
+  const countMemo = useSelector(selectCount)
+  const modeMemo = useSelector(selectMode)
+  const transferOneMemo = useSelector(selectTransferOne)
+  const transferTwoMemo = useSelector(selectTransferTwo)
+  const transferThreeMemo = useSelector(selectTransferThree)
+  const transferNoneMemo = useSelector(selectTransferNone)
 
   const err = useSelector(selectError)
-  const filteredTickets = useSelector(selectFilteredTickets)
 
   const dispatch = useDispatch()
   const ticketsComponents = useMemo(() => {
+    const filteredTickets = filterTickets(
+      tickets,
+      transferNoneMemo,
+      transferOneMemo,
+      transferTwoMemo,
+      transferThreeMemo,
+      modeMemo,
+      countMemo
+    )
     return filteredTickets.map((ticket) => {
       return <Ticket ticket={ticket} key={`${ticket.carrier}+${ticket.segments[0].date}+${ticket.segments[1].date}`} />
     })
-  }, [filteredTickets])
+  }, [tickets, countMemo, modeMemo, transferOneMemo, transferTwoMemo, transferThreeMemo, transferNoneMemo])
   if (status === 'loading') {
     return (
       <div className={classes.spinBlock}>
@@ -34,7 +56,7 @@ export default function TicketList() {
     )
   }
   if (status === 'succeeded') {
-    if (filteredTickets.length !== 0) {
+    if (ticketsComponents.length !== 0) {
       return (
         <div>
           <div>{ticketsComponents}</div>
